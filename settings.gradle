@@ -1,0 +1,16 @@
+pluginManagement{
+    plugins {
+        id 'org.springframework.boot' version "${springBootPluginVersion}"
+    }
+}
+
+rootProject.name = 'cupid'
+
+include 'cupid-core'
+include 'cupid-admin'
+include 'cupid-portal'
+include 'cupid-explore'
+include 'cupid-account'
+include 'cupid-security'
+include 'cupid-arrow'
+include 'cupid-mall'

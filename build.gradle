@@ -1,0 +1,15 @@
+description = "Cupid's Arrow"
+
+allprojects {
+    group = "${group}"
+    version = "${version}"
+}
+
+subprojects {
+    apply plugin: 'java-library'
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
+    repositories {
+        mavenCentral()
+    }
+}

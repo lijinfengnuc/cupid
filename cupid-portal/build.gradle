@@ -1,0 +1,12 @@
+plugins{
+    id 'org.springframework.boot'
+}
+
+apply plugin: 'io.spring.dependency-management'
+
+description = 'Front api project'
+
+dependencies {
+    implementation project(':cupid-security')
+    implementation 'org.springframework.boot:spring-boot-starter-webflux'
+}
