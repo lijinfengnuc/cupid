@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <!--property-->
+    <springProperty scope="context" name="APPLICATION_NAME" source="spring.application.name"
+                    defaultValue="cupid-portal"/>
+    <property name="LOG_PATH" value="/var/${APPLICATION_NAME}/logs"/>
+    <property name="PATTERN" value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n"/>
+
+    <!--contextName-->
+    <contextName>${APPLICATION_NAME}</contextName>
+
+    <!--appender-->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>${PATTERN}</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_PATH}/${APPLICATION_NAME}.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <!-- rollover daily -->
+            <fileNamePattern>${LOG_PATH}/${APPLICATION_NAME}-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <!-- each file should be at most 10MB, keep 90 days worth of history, but at most 50GB -->
+            <maxFileSize>10MB</maxFileSize>
+            <maxHistory>90</maxHistory>
+            <totalSizeCap>50GB</totalSizeCap>
+        </rollingPolicy>
+        <encoder>
+            <pattern>${PATTERN}</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+    <appender name="ASYNC-FILE" class="ch.qos.logback.classic.AsyncAppender">
+        <!-- keep all events -->
+        <discardingThreshold>0</discardingThreshold>
+        <!-- the maximum capacity of the blocking queue. -->
+        <queueSize>256</queueSize>
+        <!-- appender -->
+        <appender-ref ref="FILE"/>
+    </appender>
+
+    <!--springProfile-->
+    <springProfile name="dev">
+        <root level="DEBUG">
+            <appender-ref ref="STDOUT"/>
+        </root>
+    </springProfile>
+    <springProfile name="test">
+        <root level="DEBUG">
+            <appender-ref ref="STDOUT"/>
+            <appender-ref ref="ASYNC-FILE"/>
+        </root>
+    </springProfile>
+    <springProfile name="pro">
+        <root level="INFO">
+            <appender-ref ref="STDOUT"/>
+            <appender-ref ref="ASYNC-FILE"/>
+        </root>
+    </springProfile>
+</configuration>

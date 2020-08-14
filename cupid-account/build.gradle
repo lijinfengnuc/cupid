@@ -7,5 +7,14 @@ apply plugin: 'io.spring.dependency-management'
 description = 'Account project'
 
 dependencies {
+    implementation project(':cupid-security')
     implementation 'org.springframework.boot:spring-boot-starter-webflux'
+}
+
+bootJar {
+    enabled(false)
+}
+
+jar {
+    baseName('cupid-account')
 }

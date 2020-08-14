@@ -1,0 +1,9 @@
+server:
+  port: 520
+  servlet:
+    context-path: /cupid/portal
+spring:
+  application:
+    name: cupid-portal
+  profiles:
+    active: @profile@

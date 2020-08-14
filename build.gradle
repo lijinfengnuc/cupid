@@ -1,5 +1,9 @@
 description = "Cupid's Arrow"
 
+ext {
+    profile = System.getProperty("profile") ?: "dev"
+}
+
 allprojects {
     group = "${group}"
     version = "${version}"

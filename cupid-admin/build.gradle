@@ -7,5 +7,23 @@ apply plugin: 'io.spring.dependency-management'
 description = 'Background api project'
 
 dependencies {
+    implementation project(':cupid-arrow')
+    implementation project(':cupid-mall')
+    implementation project(':cupid-account')
     implementation 'org.springframework.boot:spring-boot-starter-webflux'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+}
+
+processResources {
+    exclude('conf')
+    from('src/main/resources/conf') {
+        include("application-${rootProject.ext.profile}.yml")
+    }
+    from('src/main/resources/application.yml') {
+        filter(org.apache.tools.ant.filters.ReplaceTokens, tokens: [profile: rootProject.ext.profile])
+    }
+}
+
+bootJar {
+    baseName('cupid-admin')
 }

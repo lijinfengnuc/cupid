@@ -1,0 +1,9 @@
+server:
+  port: 1314
+  servlet:
+    context-path: /cupid/admin
+spring:
+  application:
+    name: cupid-admin
+  profiles:
+    active: @profile@

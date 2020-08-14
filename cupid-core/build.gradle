@@ -3,3 +3,7 @@ description = 'Common project'
 dependencies {
 
 }
+
+jar {
+    baseName('cupid-core')
+}

@@ -7,6 +7,15 @@ apply plugin: 'io.spring.dependency-management'
 description = 'Project for managing certifications and permissions'
 
 dependencies {
+    implementation project(':cupid-core')
     implementation 'org.springframework.boot:spring-boot-starter-security'
     testImplementation 'org.springframework.security:spring-security-test'
+}
+
+bootJar {
+    enabled(false)
+}
+
+jar {
+    baseName('cupid-security')
 }
