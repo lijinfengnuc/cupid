@@ -1,3 +1,5 @@
+import org.apache.tools.ant.filters.ReplaceTokens
+
 plugins{
     id 'org.springframework.boot'
 }
@@ -10,8 +12,6 @@ dependencies {
     implementation project(':cupid-arrow')
     implementation project(':cupid-mall')
     implementation project(':cupid-account')
-    implementation 'org.springframework.boot:spring-boot-starter-webflux'
-    implementation 'org.springframework.boot:spring-boot-starter-actuator'
 }
 
 processResources {
@@ -20,7 +20,7 @@ processResources {
         include("application-${rootProject.ext.profile}.yml")
     }
     from('src/main/resources/application.yml') {
-        filter(org.apache.tools.ant.filters.ReplaceTokens, tokens: [profile: rootProject.ext.profile])
+        filter(ReplaceTokens, tokens: [profile: rootProject.ext.profile])
     }
 }
 

@@ -8,7 +8,6 @@ description = 'Couple space project'
 
 dependencies {
     implementation project(':cupid-security')
-    implementation 'org.springframework.boot:spring-boot-starter-webflux'
 }
 
 bootJar {
