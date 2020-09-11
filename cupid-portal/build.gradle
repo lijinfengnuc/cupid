@@ -9,9 +9,9 @@ apply plugin: 'io.spring.dependency-management'
 description = 'Front api project'
 
 dependencies {
-    implementation project(':cupid-arrow')
-    implementation project(':cupid-mall')
-    implementation project(':cupid-account')
+    api project(':cupid-arrow')
+    api project(':cupid-mall')
+    api project(':cupid-account')
 }
 
 processResources {
