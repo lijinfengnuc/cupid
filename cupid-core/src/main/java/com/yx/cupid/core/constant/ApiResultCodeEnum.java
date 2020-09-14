@@ -23,9 +23,7 @@ public enum ApiResultCodeEnum {
     /** Access denied */
     FORBIDDEN(403),
     /** Internal server error */
-    INTERNAL_SERVER_ERROR(500),
-    /** Unknown error */
-    UNKNOWN(700);
+    INTERNAL_SERVER_ERROR(500);
 
 
 

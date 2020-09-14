@@ -69,12 +69,15 @@ public class ResultHandler implements HandlerResultHandler {
                     .map(data -> ServerWebExchangeUtils.buildDataBufferInJson(response, ApiResult.ok(data)))
                     .switchIfEmpty(Mono.fromSupplier(
                             () -> ServerWebExchangeUtils.buildDataBufferInJson(response, ApiResult.ok()))));
-        } else {
+        } else if(returnValue instanceof Flux) {
             /*handle Flux*/
             return response.writeWith(((Flux<?>) returnValue)
                     .map(data -> ServerWebExchangeUtils.buildDataBufferInJson(response, ApiResult.ok(data)))
                     .switchIfEmpty(Mono.fromSupplier(
                             () -> ServerWebExchangeUtils.buildDataBufferInJson(response, ApiResult.ok()))));
+        } else {
+            /*handle original object*/
+            return ServerWebExchangeUtils.writeResponseInJson(response, () -> ApiResult.okOrNull(returnValue));
         }
     }
 
